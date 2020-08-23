@@ -5,7 +5,7 @@
 // Also, we need to specify what page we need so we can paginate on the frontend as well.
 var perPage = 20
 var page = window.location.href.match(/page=(\d+)/) ? window.location.href.match(/page=(\d+)/)[1] : 1
-var URL = "https://api.github.com/repos/open-source-ideas/open-source-ideas/issues?per_page="+perPage+"&page="+page;
+var URL = "https://api.github.com/repos/dscnitrourkela/open-source-ideas/issues?per_page="+perPage+"&page="+page;
 
 
 function display_issues () {
@@ -14,12 +14,12 @@ function display_issues () {
     success: function (data, status, xhr) {
       // the total number of pages we have in the pagination is gotten from the response header (Link)
       // However, to extract it, this is the simplest hack I could come up with.
-      var str = xhr.getResponseHeader('Link')
+      // var str = xhr.getResponseHeader('Link')
 
-      // if we can't find rel=last, then this is the last page
-      pages = str.indexOf('rel="last"') > 0 ? parseInt(str[str.indexOf('rel="last"') - 4]) : page
+      // // if we can't find rel=last, then this is the last page
+      // pages = str.indexOf('rel="last"') > 0 ? parseInt(str[str.indexOf('rel="last"') - 4]) : page
 
-      show_issues_in_dom(data, pages);
+      show_issues_in_dom(data, 1);
       $('.progress').slideUp();
     }
   });
